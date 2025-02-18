@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Events</title>
+</head>
+<body>
+    <h2>My Events</h2>
+    
+    <!-- Button to add new event -->
+    <button onclick="window.location.href='/events/new'">Add Event</button>
+    
+    <!-- List of events -->
+    <ul>
+        {% for event in events %}
+            <li>
+                <strong>{{ event[1] }}</strong> - {{ event[3] }}<br>
+                Location: {{ event[4] }}<br>
+                Description: {{ event[2] }} <br> 
+                Available Seats: {{ event[5] }} <br>
+                {% if event[5] > 0 %}
+                    <a href="/events/{{ event[0] }}">Book</a>
+                {% else %}
+                    <span>Full</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/auth/logout">Logout</a>
+</body>
+</html>
